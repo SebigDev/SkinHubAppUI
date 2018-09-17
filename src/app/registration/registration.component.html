@@ -1,66 +1,65 @@
 <div class="row">
     <div class="col-6 offset-3 mt-5">
-        <!-- SIGN IN FORM -->
-        <form *ngIf="sign_in">
-            <h3 class="border-bottom">Sign In</h3>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter username">
-            </div>
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
-            </div> 
-            
-            <button type="submit" class="btn btn-primary">Sign In</button>
-
-            <p class="mt-3">Don't have an account? <a href="" (click)="sign_in = false">Register</a></p>
-        </form>
-
         <!-- REGISTRATION FORM -->
-        <form *ngIf="!sign_in">
+        <form (ngSubmit)="onRegister()" #f="ngForm">
                 <h3>Register</h3>
                 <div class="form-group">
                     <label for="firstname">First Name</label>
-                    <input type="text" class="form-control" id="firstname" placeholder="Enter firstname">
+                    <input type="text" class="form-control" name="firstname"
+                        id="firstname" placeholder="Enter firstname" 
+                        ngModel required maxlength="50">
                 </div>
                 <div class="form-group">
                     <label for="middlename">Middle Name</label>
-                    <input type="text" class="form-control" id="middlename" placeholder="Enter middlename">
+                    <input type="text" class="form-control" name="middlename"
+                        id="middlename" placeholder="Enter middlename" 
+                        ngModel required maxlength="50">
                 </div>
                 <div class="form-group">
                     <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname">
+                    <input type="text" class="form-control" name="lastname"
+                        id="lastname" placeholder="Enter lastname" 
+                        ngModel required maxlength="50">
                 </div>
                 <div class="form-group">
-                    <label for="lastname">Last Name</label>
-                    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname">
-                </div>
-                <div class="form-group form-check">
-                    <input type="radio" class="form-check-input" name="gender" value="male" id="gender">
-                    <label for="genger" class="form-check-label">Male</label>
-                    <input type="radio" class="form-check-input" name="gender" value="female" id="gender">
-                    <label for="genger" class="form-check-label">Female</label>
+                    <label for="gender">Gender:</label>
+                    <select name="gender" id="gender" 
+                        class="form-control" ngModel required>
+                        <option value="">Select your gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="Enter username">
+                    <input type="text" class="form-control" name="username"
+                        id="username" placeholder="Enter username" 
+                        ngModel required maxlength="50">
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    <input type="email" class="form-control" name="email"
+                        id="email" placeholder="Enter email" 
+                        ngModel required email maxlength="50">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter password">
+                    <input type="password" class="form-control" name="password"
+                        id="password" placeholder="Enter password" 
+                        ngModel required>
                 </div> 
-                <button type="submit" class="btn btn-primary">Register</button>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirm_password"
+                        id="confirm_password" placeholder="Repeat password" 
+                        ngModel required>
+                </div> 
 
-            <p class="mt-3">Don't have an account? <a href="" (click)="sign_in = false">Register</a></p>
+                <button type="submit" 
+                    class="btn btn-primary"
+                    [disabled]="!f.valid">Register</button>
+
+            <p class="mt-3">Already have an account? <a [routerLink]="'/sign-in'" class="text-primary cursor-pointer">Sign In</a></p>
                 
         </form>
     </div>

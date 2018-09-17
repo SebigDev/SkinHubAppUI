@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
+import { NgForm } from "@angular/forms";
 
 @Component({
     selector: 'app-registration', 
@@ -6,5 +7,10 @@ import { Component } from "@angular/core";
 })
 
 export class RegistrationComponent {
-    sign_in: boolean = true;
+
+    @ViewChild('f') registrationForm: NgForm;
+
+    onRegister() {
+        console.log(this.registrationForm);
+    }
 }
