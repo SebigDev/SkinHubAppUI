@@ -5,7 +5,7 @@ export class RegisterUserDTO {
     firstname: string;
     middlename: string;
     lastname: string;
-    colorTypeID: string = "1";
-    gender: string;
-    dateOfBirth: string = "23-09-2001";
+    colorTypeID: number = 1;
+    gender: number = 1;
+    dateOfBirth: string = "2018-09-18T22:14:48.891Z";
   }

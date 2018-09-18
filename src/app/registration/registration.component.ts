@@ -6,27 +6,33 @@ import { RegisterUserDTO } from "../common/models/registerUserDTO";
 @Component({
     selector: 'app-registration', 
     templateUrl: './registration.component.html', 
-    providers: []
+    providers: [UserService]
 })
 
 export class RegistrationComponent {
 
     @ViewChild('f') registrationForm: NgForm;
 
-    constructor(private _userService: UserService) {}
+    userData: RegisterUserDTO;
+
+    constructor(private _userService: UserService) {
+        this.userData = new RegisterUserDTO();
+    }
 
     onRegister() {
-        let userData = new RegisterUserDTO();
-        userData.firstname = this.registrationForm.value.firstname, 
-        userData.middlename = this.registrationForm.value.middlename, 
-        userData.lastname = this.registrationForm.value.lastname, 
-        userData.gender = this.registrationForm.value.gender,
-        // userData.dateOfBirth = this.registrationForm.value.dateOfBirth, 
-        userData.username = this.registrationForm.value.username, 
-        userData.emailAddress = this.registrationForm.value.email, 
-        userData.password = this.registrationForm.value.password
+        this.userData.firstname = this.registrationForm.value.firstname, 
+        this.userData.middlename = this.registrationForm.value.middlename, 
+        this.userData.lastname = this.registrationForm.value.lastname, 
+        // this.userData.gender = this.registrationForm.value.gender,
+        // this.userData.dateOfBirth = this.registrationForm.value.dateOfBirth, 
+        this.userData.username = this.registrationForm.value.username, 
+        this.userData.emailAddress = this.registrationForm.value.email, 
+        this.userData.password = this.registrationForm.value.password
         
-        this._userService.register(userData);
+        this._userService.register(this.userData)
+            .subscribe(data => {
+                console.log("Registration successful.");
+            });
 
         this.registrationForm.reset();
     }

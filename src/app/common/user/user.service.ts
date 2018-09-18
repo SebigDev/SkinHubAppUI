@@ -6,8 +6,8 @@ import { RegisterUserDTO } from "../models/registerUserDTO";
 @Injectable()
 export class UserService {
 
-    private registrationApi: string = 'http://localhost:50781/api/member/register';
-    private loginApi: string = 'http://localhost:50781/api/member/login';
+    private registrationApi: string = 'http://localhost:19313/api/member/register';
+    private loginApi: string = 'http://localhost:19313/api/member/login';
 
     constructor(private _http: HttpClient) {}
 
