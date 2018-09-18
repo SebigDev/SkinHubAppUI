@@ -7,57 +7,74 @@
                     <label for="firstname">First Name</label>
                     <input type="text" class="form-control" name="firstname"
                         id="firstname" placeholder="Enter firstname" 
-                        ngModel required maxlength="50">
+                        ngModel required maxlength="50" #firstname="ngModel">
+                    <div class="text-danger small" *ngIf="!firstname.valid && firstname.touched">
+                        First Name is required.</div>
                 </div>
                 <div class="form-group">
                     <label for="middlename">Middle Name</label>
                     <input type="text" class="form-control" name="middlename"
                         id="middlename" placeholder="Enter middlename" 
-                        ngModel required maxlength="50">
+                        ngModel required maxlength="50" #middlename="ngModel">
+                    <div class="text-danger small" *ngIf="!middlename.valid && middlename.touched">
+                        Middle Name is required.</div>
                 </div>
                 <div class="form-group">
                     <label for="lastname">Last Name</label>
                     <input type="text" class="form-control" name="lastname"
                         id="lastname" placeholder="Enter lastname" 
-                        ngModel required maxlength="50">
+                        ngModel required maxlength="50" #lastname="ngModel">
+                    <div class="text-danger small" *ngIf="!lastname.valid && lastname.touched">
+                        Last Name is required.</div>
                 </div>
                 <div class="form-group">
                     <label for="gender">Gender:</label>
                     <select name="gender" id="gender" 
-                        class="form-control" ngModel required>
+                        class="form-control" ngModel required #gender="ngModel">
                         <option value="">Select your gender</option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
+                    <div class="text-danger small" *ngIf="!gender.valid && gender.touched">
+                        Your gender is required.</div>
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" name="username"
                         id="username" placeholder="Enter username" 
-                        ngModel required maxlength="50">
+                        ngModel required maxlength="50" #username="ngModel">
+                    <div class="text-danger small" *ngIf="!username.valid && username.touched">
+                        Username is required.</div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" class="form-control" name="email"
                         id="email" placeholder="Enter email" 
-                        ngModel required email maxlength="50">
+                        ngModel required email maxlength="50" #email="ngModel">
+                    <div class="text-danger small" *ngIf="!email.valid && email.touched">
+                        A valid email is required.</div>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" name="password"
                         id="password" placeholder="Enter password" 
-                        ngModel required>
+                        ngModel required #password="ngModel">
+                    <div class="text-danger small" *ngIf="!password.valid && password.touched">
+                        Password is required.</div>
                 </div> 
                 <div class="form-group">
                     <label for="confirm_password">Confirm Password</label>
                     <input type="password" class="form-control" name="confirm_password"
                         id="confirm_password" placeholder="Repeat password" 
-                        ngModel required>
+                        ngModel required #confirmpassword="ngModel">
+                    <div class="text-danger small" 
+                        *ngIf="!confirmpassword.valid && confirmpassword.touched">
+                        Confirm password is required and must match password</div>
                 </div> 
 
                 <button type="submit" 
                     class="btn btn-primary"
-                    [disabled]="!f.valid">Register</button>
+                    >Register</button>
 
             <p class="mt-3">Already have an account? <a [routerLink]="'/sign-in'" class="text-primary cursor-pointer">Sign In</a></p>
                 

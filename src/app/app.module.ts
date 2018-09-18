@@ -8,6 +8,7 @@ import { AppComponent } from './layout/app.component';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './common/user/user.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'sign-in', component: LoginComponent}
     ]),
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
