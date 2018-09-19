@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { RegisterUserDTO } from "../models/registerUserDTO";
+import { LoginUserDTO } from "../models/loginUserDTO";
 
 @Injectable()
 export class UserService {
@@ -12,7 +13,11 @@ export class UserService {
     constructor(private _http: HttpClient) {}
 
     register( user: RegisterUserDTO ) {
-        console.log(user)
         return this._http.post<number>(this.registrationApi, user);
+    }
+
+    login(user: LoginUserDTO) {
+        console.log(user);
+        return this._http.post(this.loginApi, user);
     }
 }
