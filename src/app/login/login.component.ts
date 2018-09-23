@@ -22,7 +22,7 @@ export class LoginComponent {
     onLogin() {
         if(this.loginForm.valid) {
             this.loginUser.username = this.loginForm.value.username;
-            this.loginUser.email = this.loginForm.value.email;
+            this.loginUser.emailAddress = this.loginForm.value.email;
             this.loginUser.password = this.loginForm.value.password;
 
             this._userService.login(this.loginUser)

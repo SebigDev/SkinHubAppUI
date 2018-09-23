@@ -1,5 +1,5 @@
 export class LoginUserDTO {
     username: string;
-    email: string;
+    emailAddress: string;
     password: string;
 }
