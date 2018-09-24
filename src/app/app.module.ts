@@ -16,6 +16,7 @@ import { PostComponent } from './posts/post/post.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product/product.component';
 import { PostService } from './posts/post.service';
+import { CreatePostComponent } from './create-post/create-post.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { PostService } from './posts/post.service';
     AppComponent, 
     HomeComponent, 
     RegistrationComponent, 
-    LoginComponent, HeaderComponent, PostsComponent, PostComponent, ProductsComponent, ProductComponent
+    LoginComponent, HeaderComponent, PostsComponent, PostComponent, ProductsComponent, ProductComponent, CreatePostComponent
   ],
   imports: [
     BrowserModule, 
@@ -34,7 +35,9 @@ import { PostService } from './posts/post.service';
       { path: 'register', component: RegistrationComponent }, 
       { path: 'sign-in', component: LoginComponent}, 
       { path: 'posts/:id', component: PostComponent },
-      { path: 'posts', component: PostsComponent }
+      { path: 'posts', component: PostsComponent }, 
+      { path: 'products', component: ProductComponent }, 
+      { path: 'create-post', component: CreatePostComponent }
     ]),
   ],
   providers: [UserService, PostService],
