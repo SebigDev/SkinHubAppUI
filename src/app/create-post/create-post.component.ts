@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CreatePostComponent implements OnInit {
 
   page: number = 1;
+  progressBarColor: string = 'white';
 
   constructor() { }
 
@@ -24,6 +25,31 @@ export class CreatePostComponent implements OnInit {
 
   getWidth() {
     return ((this.page - 1) * 25) + '%';
+  }
+
+  getProgressColor() {
+    switch (this.page) {
+      case 1: 
+        this.progressBarColor = 'white';       
+        break;
+      case 2: 
+        this.progressBarColor = 'red';
+        break;
+      case 3: 
+        this.progressBarColor = 'yellow';
+        break;
+      case 4: 
+        this.progressBarColor = 'orange';
+        break;
+      case 5: 
+        this.progressBarColor = 'green';
+        break;
+      default:
+        this.progressBarColor = 'white';
+        break;
+    }
+
+    return this.progressBarColor;
   }
 
 }
