@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatePostComponent implements OnInit {
 
+  page: number = 1;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  previousPage() {
+    return this.page--;
+  }
+
+  nextPage() {
+    return this.page++;
+  }
+
+  getWidth() {
+    return ((this.page - 1) * 25) + '%';
   }
 
 }
