@@ -33,6 +33,7 @@ import { PostService } from './posts/post.service';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'register', component: RegistrationComponent }, 
       { path: 'sign-in', component: LoginComponent}, 
+      { path: 'products', component: ProductComponent },
       { path: 'posts/:id', component: PostComponent },
       { path: 'posts', component: PostsComponent }
     ]),

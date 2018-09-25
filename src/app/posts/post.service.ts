@@ -6,8 +6,8 @@ import { Post } from '../common/models/post';
 @Injectable()
 export class PostService {
 
-  private allPostApi: string = 'http://localhost:19313/api/post/getallposts';
-  private postApi: string = 'http://localhost:19313/api/post/GetPostByID';
+  private allPostApi: string = 'https://localhost:44327/api/post/getallposts';
+  private postApi: string = 'https://localhost:44327/api/post/GetPostByID';
 
   constructor(private _http: HttpClient) { }
 
