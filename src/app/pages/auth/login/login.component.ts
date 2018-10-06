@@ -11,6 +11,7 @@ import { MemberService } from '../../../../shared/client-services/index';
 })
 
 export class LoginComponent implements OnInit {
+  token: void;
   model: any = {};
 
   memberLogin: any;
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
     this._userServices.apiMemberLoginPost(this.model)
       .subscribe((result: any) => {
         this.memberLogin = result;
-        console.log(this.memberLogin);
+        localStorage.setItem("token", this.model);
         this.redirectToDashboard();
 
       }, (error) => {

@@ -6,3 +6,16 @@
 input.ng-invalid.ng-touched, select.ng-invalid.ng-touched {
     border: 1px solid #c44;
 }
+
+.breadcrumb ul li a {
+  color:darkorange !important;
+}
+.breadcrumb ul{
+  margin-left:65%;
+}
+.link{
+  cursor: pointer;
+}
+a{
+  cursor:pointer;
+}
