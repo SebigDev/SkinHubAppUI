@@ -5,43 +5,41 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
 
-import { AppComponent } from './layout/app.component';
+
 import { HomeComponent } from './home/home.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { LoginComponent } from './login/login.component';
-import { UserService } from './common/user/user.service';
+import { AppComponent } from './app.component';
+import { RegisterComponent } from './pages/auth/registration/register.component';
+import { LoginComponent } from './pages/auth/login/login.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { PostsComponent } from './posts/posts.component';
-import { PostComponent } from './posts/post/post.component';
-import { ProductsComponent } from './products/products.component';
-import { ProductComponent } from './products/product/product.component';
-import { PostService } from './posts/post.service';
-import { CreatePostComponent } from './create-post/create-post.component';
+import { MemberService, ColorTypeService, GenderTypeService } from '../shared/client-services/index';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    HomeComponent, 
-    RegistrationComponent, 
-    LoginComponent, HeaderComponent, PostsComponent, PostComponent, ProductsComponent, ProductComponent, CreatePostComponent
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, 
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'register', component: RegistrationComponent }, 
-      { path: 'sign-in', component: LoginComponent}, 
-      { path: 'products', component: ProductComponent },
-      { path: 'posts/:id', component: PostComponent },
-      { path: 'posts', component: PostsComponent }, 
-      { path: 'products', component: ProductComponent }, 
-      { path: 'create-post', component: CreatePostComponent }
+      { path: '', component: HomeComponent},
+      { path: 'auth/register', component: RegisterComponent },
+      { path: 'auth/login', component: LoginComponent },
+      { path: '**', redirectTo: '', pathMatch: 'full' }
+      
     ]),
   ],
-  providers: [UserService, PostService],
+  providers: [
+    MemberService,
+    ColorTypeService,
+    GenderTypeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

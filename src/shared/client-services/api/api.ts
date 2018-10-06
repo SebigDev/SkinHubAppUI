@@ -1,0 +1,17 @@
+export * from './colorType.service';
+import { ColorTypeService } from './colorType.service';
+export * from './comment.service';
+import { CommentService } from './comment.service';
+export * from './genderType.service';
+import { GenderTypeService } from './genderType.service';
+export * from './member.service';
+import { MemberService } from './member.service';
+export * from './post.service';
+import { PostService } from './post.service';
+export * from './productListType.service';
+import { ProductListTypeService } from './productListType.service';
+export * from './productType.service';
+import { ProductTypeService } from './productType.service';
+export * from './reply.service';
+import { ReplyService } from './reply.service';
+export const APIS = [ColorTypeService, CommentService, GenderTypeService, MemberService, PostService, ProductListTypeService, ProductTypeService, ReplyService];
