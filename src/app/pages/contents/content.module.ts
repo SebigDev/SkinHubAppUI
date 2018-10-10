@@ -8,10 +8,13 @@ import { CommonModule } from "@angular/common";
 import { MenComponent } from "./genderType/men/men.component";
 import { WomenComponent } from "./genderType/women/women.component";
 import { KiddiesComponent } from "./genderType/kiddies/kiddies.component";
+import { ProductCategoryComponent } from "./product-categories/product-category.component";
+import {PostComponent} from "./posts/post.component";
 
 
 
 
+// @ts-ignore
 const routes: Routes = [
       {
         "path": "gendertype",
@@ -34,6 +37,18 @@ const routes: Routes = [
         "component": KiddiesComponent,
       },
       {
+        "path": "products",
+        "component": PostComponent
+      },
+      {
+        "path": "productcategory/:id",
+        "component": ProductCategoryComponent
+      },
+      {
+        "path": "post/:id",
+        "component": PostComponent
+      },
+      {
         path: '**', redirectTo: '', pathMatch: 'full'
       }
 ];
@@ -47,7 +62,10 @@ const routes: Routes = [
     ColorComponent,
     MenComponent,
     WomenComponent,
-    KiddiesComponent
+    KiddiesComponent,
+    ProductCategoryComponent,
+    PostComponent
+
   ],
   imports: [
     CommonModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { MemberService } from '../../../../shared/client-services/index';
+import { MemberService, MemberDto } from '../../../../shared/client-services/index';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +11,16 @@ import { MemberService } from '../../../../shared/client-services/index';
 })
 
 export class LoginComponent implements OnInit {
-  token: void;
+  memberId: any;
+  showLoginForm: boolean = true;
+  showUpdateForm: boolean = false;
+  showWarning: boolean = false;
   model: any = {};
 
+  _error;
+
   memberLogin: any;
+  memberUpdate: MemberDto = {};
 
 
   constructor(
@@ -25,7 +31,9 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit(): void {
-   
+    this.showLoginForm = true;
+    this.isloggedIn();
+
   }
 
   //method to login a member
@@ -33,16 +41,66 @@ export class LoginComponent implements OnInit {
     this._userServices.apiMemberLoginPost(this.model)
       .subscribe((result: any) => {
         this.memberLogin = result;
-        localStorage.setItem("token", this.model);
-        this.redirectToDashboard();
+        localStorage.setItem("token", JSON.stringify(result));
+        this.veryUserUpdate(this.model.username);
 
       }, (error) => {
-        console.log(error);
+        // this._error = error;
+        // console.log(error);
+        this.returnError();
       })
   }
+
+  //verifyUpdate
+  veryUserUpdate(username: string): void {
+    this._userServices.apiMemberGetMemberByUsernameGet(username)
+      .subscribe((result) => {
+        this.memberId = result.id;
+        if (result.firstname === null || result.lastname === null) {
+          this.showUpdateInputForm();
+        } else {
+          this.redirectToDashboard();
+        }
+      })
+  }
+
+  //show Update Form
+  showUpdateInputForm() {
+    this.showLoginForm = false;
+    this.showUpdateForm = true;
+    this.memberUpdate.username;
+  }
+
+  //updateMember
+  updateMember(): void {
+    this.memberUpdate.id = this.memberId;
+    this.memberUpdate.firstname = this.model.firstname;
+    this.memberUpdate.middlename = this.model.middlename;
+    this.memberUpdate.lastname = this.model.lastname;
+    this.memberUpdate.dateOfBirth = this.model.dateOfBirth;
+    this._userServices.apiMemberUpdateMemberPut(this.memberUpdate)
+      .subscribe((result: any) => {
+        console.log("Member Updated Successfully");
+        this.redirectToDashboard();
+      })
+  }
+
+  //checkIfloggedIn
+  isloggedIn(): void {
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.veryUserUpdate(this.model.usernme);
+    }
+  }
+
 
   //method to redirect to the dashboard
   redirectToDashboard(): void {
     this._router.navigate(['/'])
+  }
+
+  returnError(): any {
+    this.showWarning = true;
+    return `Login Failed, Please Check your credentials`;
   }
 }

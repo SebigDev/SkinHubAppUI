@@ -184,6 +184,49 @@ export class MemberService {
         );
     }
 
+
+
+  /**
+    * Updates a Member
+    * 
+    * @param memberDto
+    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+    * @param reportProgress flag to report request and response progress.
+    */
+  public apiMemberUpdateMemberPut(model?: MemberDto, observe?: 'body', reportProgress?: boolean): Observable<any>;
+  public apiMemberUpdateMemberPut(model?: MemberDto, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+  public apiMemberUpdateMemberPut(model?: MemberDto, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+  public apiMemberUpdateMemberPut(model?: MemberDto, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = [
+    ];
+    let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set("Accept", httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    let consumes: string[] = [
+      'application/json-patch+json',
+      'application/json',
+      'text/json',
+      'application/_*+json'
+    ];
+
+    return this.httpClient.put<any>(`${this.basePath}/api/Member/UpdateMember`,
+      model,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress
+      }
+    );
+  }
+
     /**
      * Logs in a Member
      * 

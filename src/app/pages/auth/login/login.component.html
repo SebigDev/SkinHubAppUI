@@ -4,24 +4,28 @@
 <section class="login_area section--padding2">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 offset-lg-3">
+      <div class="col-lg-6 offset-lg-3" *ngIf="showLoginForm">
         <form #login="ngForm" novalidate (ngSubmit)="saveMemberLogin()">
           <div class="cardify login">
             <div class="login--header">
-              <h3>Welcome Back</h3>
+              <h3>Login</h3>
               <p>You can sign in with your username</p>
+              <div class="btn btn-danger" *ngIf="showWarning">{{returnError()}}</div>
+              <!--<div class="btn btn-danger" *ngIf="_error">{{_error.status}}: {{_error.statusText}}</div>-->
             </div>
+
+
             <!-- end .login_header -->
 
             <div class="login--form">
               <div class="form-group">
                 <label for="user_name">Username</label>
-                <input id="user_name" type="text" class="text_field" [(ngModel)]="model.username" name="username"  placeholder="Enter your username..." required>
+                <input id="user_name" type="text" class="text_field" [(ngModel)]="model.username" name="username" placeholder="Enter your username..." required>
               </div>
 
               <div class="form-group">
                 <label for="pass">Password</label>
-                <input id="pass" type="password" class="text_field" [(ngModel)]="model.password" name="password"  placeholder="Enter your password..." required>
+                <input id="pass" type="password" class="text_field" [(ngModel)]="model.password" name="password" placeholder="Enter your password..." required>
               </div>
 
               <div class="form-group">
@@ -35,28 +39,56 @@
               </div>
 
               <button class="btn btn-primary" type="submit" [disabled]="!login.form.valid">Login Now</button>
-
-              <div class="login_assist">
-                <p class="recover">
-                  Lost your
-                  <a href="pass-recovery.html">username</a> or
-                  <a href="pass-recovery.html">password</a>?
-                </p>
-                <p class="signup">
-                  Don't have an
-                  <a href="signup.html">account</a>?
-                </p>
-              </div>
             </div>
+
+
             <!-- end .login--form -->
           </div>
           <!-- end .cardify -->
         </form>
-      </div>
+                   <!-- end .login--form -->
+          </div>
+
+       <div class="col-lg-6 offset-lg-3" *ngIf="showUpdateForm">
+         <form #update="ngForm" novalidate (ngSubmit)="updateMember()">
+           <div class="cardify login">
+             <div class="login--header">
+               <h3>Get Started</h3>
+               <p></p>
+             </div>
+
+             <!-- end .login_header -->
+
+             <div class="login--form">
+               <div class="form-group">
+                 <label for="first_name">Firstname</label>
+                 <input id="first_name" type="text" class="text_field" [(ngModel)]="model.firstname" name="firstname" placeholder="Enter your firstname..." required>
+               </div>
+               <div class="form-group">
+                 <label for="middle_name">Middle Name</label>
+                 <input id="middle_name" type="text" class="text_field" [(ngModel)]="model.middlename" name="middlename" placeholder="Enter your middlename..." required>
+               </div>
+
+               <div class="form-group">
+                 <label for="last_name">Last Name</label>
+                 <input id="last_name" type="text" class="text_field" [(ngModel)]="model.lastname" name="lastname" placeholder="Enter your lastname..." required>
+               </div>
+
+               <div class="form-group">
+                 <label for="dateOfBirth">Date of Birth</label>
+                 <input id="dateOfBirth" type="text" class="text_field" [(ngModel)]="model.dateOfBirth" name="dateOfBirth" placeholder="23-March-1900" required>
+               </div>
+               <button class="btn btn-primary" type="submit" [disabled]="!update.form.valid">Update Now</button>
+             </div>
+
+           </div>
+           <!-- end .cardify -->
+           </form>
+</div>
       <!-- end .col-md-6 -->
     </div>
+    </div>
     <!-- end .row -->
-  </div>
   <!-- end .container -->
 </section>
 <!--================================

@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { ColorTypeService, MemberService, GenderTypeService, ProductTypeService, ProductListTypeService } from '../../shared/client-services/index';
+import { ColorTypeService, MemberService, GenderTypeService, ProductTypeService, ProductListTypeService, ProductListTypeDto } from '../../shared/client-services/index';
 import { Router } from '@angular/router';
 
 @Component({
@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit{
     this._genderServices.apiGenderTypeGetAllGenderTypesGet()
       .subscribe((result: any[]) => {
         this.genders = result;
-        console.log(this.genders);
       })
   }
 
@@ -42,7 +41,6 @@ export class HomeComponent implements OnInit{
     this._productServices.apiProductTypeGetAllProductTypesGet()
       .subscribe((result: any[]) =>{
         this.products = result;
-        console.log(this.products)
       })
   }
 
@@ -50,8 +48,8 @@ export class HomeComponent implements OnInit{
   getProductListTypes(): void {
     this._productListServices.apiProductListTypeGetAllProductListTypesGet()
       .subscribe((result: any[]) => {
-        this.productLists = result;
-        console.log(this.productLists )
+        this.productLists = result.slice(0,3);
+ 
       })
   }
 

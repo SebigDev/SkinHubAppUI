@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit{
 
 
   ngOnInit(): void {
-    
+    this.isloggedIn();
   }
 
   //method to save a member
@@ -45,8 +45,21 @@ export class RegisterComponent implements OnInit{
       })
   }
 
-  
+  //checkIfloggedIn
+  isloggedIn(): void {
+    let token = localStorage.getItem("token");
+    if (token) {
+      this.redirectHome();
+    }
+  }
 
+
+  //redirectToHome
+  redirectHome(): void {
+    this._router.navigate(['/'])
+  }
+
+  //redirect to login
   redirectToLogin(): void {
     this._router.navigate(['/auth/login'])
   }

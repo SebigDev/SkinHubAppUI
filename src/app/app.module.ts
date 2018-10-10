@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './pages/auth/registration/register.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { MemberService, ColorTypeService, GenderTypeService, ProductListTypeService, ProductTypeService } from '../shared/client-services/index';
+import { MemberService, ColorTypeService, GenderTypeService, ProductListTypeService, ProductTypeService, PostService } from '../shared/client-services/index';
 import { AppRoutingModule } from './app.routing';
 import { ContentModule } from './pages/contents/content.module';
 
@@ -35,7 +35,8 @@ import { ContentModule } from './pages/contents/content.module';
     ColorTypeService,
     GenderTypeService,
     ProductListTypeService,
-    ProductTypeService
+    ProductTypeService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })

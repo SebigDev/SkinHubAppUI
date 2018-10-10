@@ -1,6 +1,18 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\layout",
+    "\\src\\app\\pages",
+    "\\src\\app\\pages\\contents",
+    "\\src\\assets",
+    "\\src\\assets\\js",
+    "\\src\\shared",
+    "\\src\\shared\\client-services",
+    "\\src\\shared\\client-services\\api",
+    "\\src\\shared\\client-services\\model"
   ],
+  "SelectedNode": "\\src\\assets\\js\\script.min.js",
   "PreviewInSolutionExplorer": false
 }
