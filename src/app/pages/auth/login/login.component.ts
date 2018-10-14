@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { MemberService, MemberDto } from '../../../../shared/client-services/index';
+import { MemberService, MemberDto } from '../../../../shared/client-services';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.showLoginForm = true;
     this.isloggedIn();
-
   }
 
   //method to login a member
@@ -41,15 +40,15 @@ export class LoginComponent implements OnInit {
     this._userServices.apiMemberLoginPost(this.model)
       .subscribe((result: any) => {
         this.memberLogin = result;
-        localStorage.setItem("token", JSON.stringify(result));
+        localStorage.setItem("token" ,JSON.stringify(result));
         this.veryUserUpdate(this.model.username);
 
+
       }, (error) => {
-        // this._error = error;
-        // console.log(error);
         this.returnError();
       })
   }
+
 
   //verifyUpdate
   veryUserUpdate(username: string): void {
@@ -80,17 +79,24 @@ export class LoginComponent implements OnInit {
     this.memberUpdate.dateOfBirth = this.model.dateOfBirth;
     this._userServices.apiMemberUpdateMemberPut(this.memberUpdate)
       .subscribe((result: any) => {
+        this.memberId = result;
         console.log("Member Updated Successfully");
         this.redirectToDashboard();
       })
+  }
+
+  // retrieve user from token
+  getUsername(): any{
+    return JSON.parse(localStorage.getItem("token")).username;
   }
 
   //checkIfloggedIn
   isloggedIn(): void {
     let token = localStorage.getItem("token");
     if (token) {
-      this.veryUserUpdate(this.model.usernme);
+      this.veryUserUpdate(this.getUsername());
     }
+    this.redirectToDashboard();
   }
 
 

@@ -83,56 +83,36 @@
       <!-- start col-md-9 -->
       <div class="col-lg-9">
         <div class="row">
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6" *ngFor="let allPost of allPosts">
             <!-- start .single-product -->
             <div class="product product--card product--card-small">
 
               <div class="product__thumbnail">
                 <img src="../../assets/images/p1.jpg" alt="Product Image">
-                <div class="prod_btn">
-                  <a href="single-product.html" class="transparent btn--sm btn--round">More Info</a>
-                  <a href="single-product.html" class="transparent btn--sm btn--round">Live Demo</a>
-                </div>
-                <!-- end /.prod_btn -->
               </div>
               <!-- end /.product__thumbnail -->
 
               <div class="product-desc">
-                <a href="#" class="product_title">
-                  <h4>Finance and Consulting Business Theme</h4>
+                <a (click)="goToPost(allPost.id)" class="product_title">
+                  <h4>{{allPost.title}}</h4>
                 </a>
                 <ul class="titlebtm">
                   <li>
                     <img class="auth-img" src="../../assets/images/auth3.jpg" alt="author image">
                     <p>
-                      <a href="#">AazzTech</a>
+                      <a (click)="goToPost(allPost.id)">{{allPost.author}}</a>
                     </p>
                   </li>
                   <li class="out_of_class_name">
                     <div class="sell">
                       <p>
-                        <span class="lnr lnr-cart"></span>
-                        <span>27</span>
+                        <span>{{allPost.productListType}}</span>
                       </p>
                     </div>
                     <div class="rating product--rating">
-                      <ul>
-                        <li>
-                          <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                          <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                          <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                          <span class="fa fa-star"></span>
-                        </li>
-                        <li>
-                          <span class="fa fa-star-half-o"></span>
-                        </li>
-                      </ul>
+                      <p>
+                        <span></span>
+                      </p>
                     </div>
                   </li>
                 </ul>
