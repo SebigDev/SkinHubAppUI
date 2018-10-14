@@ -1,0 +1,176 @@
+<div class="dashboard_contents">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="filter-bar dashboard_title_area clearfix filter-bar2">
+          <div class="dashboard__title dashboard__title pull-left">
+            <h3>{{productList?.name}} ({{productList?.productType}})</h3>
+          </div>
+
+          <div class="pull-right">
+            <div class="filter__option filter--text">
+
+            </div>
+
+            <div class="filter__option filter--select">
+              <div class="pull-right">
+                <a href="#" class="btn btn--md btn--round" data-target="#myModal1" data-toggle="modal" (click)="showModalPopUp()" *ngIf="isLoggedIn()">Create Post</a>
+              </div>
+              <div class="pull-right">
+                <a href="#" class="btn btn--md btn--round" (click)="goToLogin()" *ngIf="!isLoggedIn()">Login to Post</a>
+              </div>
+            </div>
+          </div>
+          <!-- end /.pull-right -->
+        </div>
+        <!-- end /.filter-bar -->
+      </div>
+      <!-- end /.col-md-12 -->
+    </div>
+    <!-- end /.row -->
+
+    <div class="row">
+      <!-- start .col-md-4 -->
+      <div class="col-lg-4 col-md-6" *ngFor="let post of posts">
+        <!-- start .single-product -->
+        <div class="product product--card">
+
+          <div class="product__thumbnail">
+            <img src="../../assets/images/p1.jpg" alt="Product Image">
+
+            <div class="prod_option">
+              <a href="#" id="drop2" class="dropdown-trigger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="lnr lnr-cog setting-icon"></span>
+              </a>
+
+              <div class="options dropdown-menu" aria-labelledby="drop2">
+                <ul>
+                  <li>
+                    <a href="edit-item.html">
+                      <span class="lnr lnr-pencil"></span>Edit
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <span class="lnr lnr-eye"></span>Hide
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-toggle="modal" data-target="#myModal2" class="delete">
+                      <span class="lnr lnr-trash"></span>Delete
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- end /.product__thumbnail -->
+
+          <div class="product-desc">
+            <a (click)="goToPost(post.id)" class="product_title">
+              <h4>{{post.title}}</h4>
+            </a>
+            <ul class="titlebtm">
+              <li>
+                <img class="auth-img" src="../../assets/images/auth.jpg" alt="author image">
+                <p>
+                  <a href="#">{{post.author}}</a>
+                </p>
+              </li>
+              <li class="product_cat">
+                <a href="#">
+                  <span class="lnr lnr-book"></span>Plugin
+                </a>
+              </li>
+            </ul>
+
+            <p>
+              {{post.body}}
+            </p>
+          </div>
+          <!-- end /.product-desc -->
+
+          <div class="product-purchase">
+            <div class="price_love">
+              <span>$10 - $50</span>
+              <p>
+                <span class="lnr lnr-heart"></span> 90
+              </p>
+            </div>
+            <div class="sell">
+              <p>
+                <span class="lnr lnr-cart"></span>
+                <span>16</span>
+              </p>
+            </div>
+          </div>
+          <!-- end /.product-purchase -->
+        </div>
+        <!-- end /.single-product -->
+      </div>
+      <!-- end /.col-md-4 -->
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="pagination-area">
+          <nav class="navigation pagination" role="navigation">
+            <div class="nav-links">
+              <a class="prev page-numbers" href="#">
+                <span class="lnr lnr-arrow-left"></span>
+              </a>
+              <a class="page-numbers current" href="#">1</a>
+              <a class="page-numbers" href="#">2</a>
+              <a class="page-numbers" href="#">3</a>
+              <a class="next page-numbers" href="#">
+                <span class="lnr lnr-arrow-right"></span>
+              </a>
+            </div>
+          </nav>
+        </div>
+        <!-- end /.pagination-area -->
+      </div>
+      <!-- end /.col-md-12 -->
+    </div>
+    <!-- end /.row -->
+  </div>
+  <!-- end /.container -->
+</div>
+
+
+<!-- MODAL FOR CREATING POST-->
+<div class="modal fade rating_modal" #postModal id="myModal1" tabindex="-1" role="dialog" aria-labelledby="rating_modal" *ngIf="showModal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="text-primary">
+          Create a Post for {{productList?.name}} ({{productList?.productType}})
+        </h3>
+      </div>
+      <!-- end /.modal-header -->
+
+      <div class="modal-body">
+        <form #post="ngForm" (ngSubmit)="savePost()">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input id="title" type="text" [(ngModel)]="model.title" name="title" placeholder="Enter post title..." required>
+            </div>
+          <div class="form-group">
+            <label for="title">Body</label>
+            <textarea id="body" type="text" class="text_field" [(ngModel)]="model.body" name="body" placeholder="Enter post details..." required>
+            </textarea>
+          </div>
+
+          <button type="submit" class="btn btn--round btn--default" [disabled]="!post.form.valid">Save Post</button>
+          <button class="btn btn--round modal_close" data-dismiss="modal" #postModal>Close</button>
+        </form>
+        <!-- end /.form -->
+      </div>
+      <!-- end /.modal-body -->
+    </div>
+  </div>
+</div>

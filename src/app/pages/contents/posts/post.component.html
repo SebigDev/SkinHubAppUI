@@ -1,0 +1,218 @@
+<section class="support_threads_area section--padding2">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="forum_detail_area ">
+          <div class="cardify forum--issue">
+            <div class="title_vote clearfix">
+              <h3>{{postDetail?.title}}</h3>
+
+              <div class="vote">
+                <a href="#">
+                  <span class="lnr lnr-thumbs-up"></span>
+                </a>
+                <a href="#">
+                  <span class="lnr lnr-thumbs-down"></span>
+                </a>
+              </div>
+              <!-- end .vote -->
+            </div>
+            <!-- end .title_vote -->
+            <div class="suppot_query_tag">
+              <a href="#" class="user">
+                <img class="poster_avatar" src="../../assets/images/support_avat1.png" alt="Support Avatar"> {{postDetail?.author}} </a>
+              <span>asked 3 weeks ago</span>
+              <span class="support_tag">item discussion</span>
+            </div>
+            <p>{{postDetail?.body}}</p>
+          </div>
+          <!-- end .forum_issue -->
+
+
+          <div class="forum--replays cardify">
+            <div class="area_title">
+              <h4>{{getCommentCount()}} Comments</h4>
+            </div>
+            <!-- end .area_title -->
+            <div *ngIf="picture">
+            <div class="forum_single_reply" *ngFor="let comment of comments">
+
+              <div class="reply_avatar">
+                <img src="{{getCommentPicture(comment)}}" alt="reply avatar">
+              </div>
+
+              <div class="reply_content">
+                <div class="name_vote">
+                  <div class="pull-left">
+                    <h4>{{comment.author }}
+                      <span></span>
+                    </h4>
+                    <p>Commented on {{comment.createdOn | date : "fullDate"}} by {{comment.createdOn | date : 'shortTime' }}</p>
+                  </div>
+                  <!-- end .pull-left -->
+
+                  <div class="vote">
+                    <a class="active">
+                      <span class="lnr lnr-thumbs-up"></span>
+                      <span>{{getThumpUp()}}</span>
+                    </a>
+                    <a href="#" class="">
+                      <span class="lnr lnr-thumbs-down"></span>
+                      <span>{{getThumpUp()}}</span>
+                    </a>
+                  </div>
+                </div>
+                <!-- end .vote -->
+                <p>{{comment.commentBody}}</p>
+              </div>
+              <!-- end .reply_content -->
+            </div>
+            </div>
+            <!-- end .forum_single_reply -->
+
+
+            <div class="comment-form-area" *ngIf="isLoggedIn()">
+              <h4>Leave a comment</h4>
+              <!-- comment reply -->
+              <div class="media comment-form support__comment">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="../../assets/images/m7.png" alt="Commentator Avatar">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <form action="#" class="comment-reply-form" #comment="ngForm" (ngSubmit)="saveComment()">
+                    <div id="trumbowyg-demo">
+                        <div class="form-group">
+                          <label for="user_name">Comment</label>
+                          <textarea id="user_name" type="text" class="text_field" [(ngModel)]="model.commentBody" name="commentBody" placeholder="Enter your comment here..." required>
+                          </textarea>
+                        </div>
+                    </div>
+                    <button class="btn btn--sm btn--round" type="submit" [disabled]="!comment.form.valid">Post Comment</button>
+                  </form>
+                </div>
+              </div>
+              <!-- comment reply -->
+            </div>
+            <div class="comment-form-area" *ngIf="!isLoggedIn()">
+              <h4>Leave a comment</h4>
+              <!-- comment reply -->
+              <button class="btn btn--sm btn--round" type="submit" (click)="goToLogin()">Login to comment on this post</button>
+              </div>
+              <!-- comment reply -->
+            </div>
+          </div>
+          <!-- end .forum_replays -->
+        </div>
+        <!-- end .forum_detail_area -->
+      <!-- end .col-md-8 -->
+
+      <div class="col-lg-4">
+        <aside class="sidebar support--sidebar">
+          <div class="" *ngIf="!isLoggedIn()">
+            <a (click)="goToLogin()" class="login_promot">
+              <span class="lnr lnr-lock"></span>Login to Ask a Question</a>
+          </div>
+          <div class="" *ngIf="isLoggedIn()">
+            <a (click)="goToLogin()" class="login_promot">
+              <span class="lnr lnr-lock"></span>Read Our Comments</a>
+          </div>
+          <div class="sidebar-card card--forum_categories">
+            <div class="card-title">
+              <h4>Forum Categories</h4>
+            </div>
+            <div class="collapsible-content">
+              <ul class="card-content">
+                <li>
+                  <a href="#">
+                    <span class="lnr lnr-chevron-right"></span>Wordpress
+                    <span class="item-count">35</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="lnr lnr-chevron-right"></span>Support Center
+                    <span class="item-count"> 45</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="lnr lnr-chevron-right"></span>General Topics
+                    <span class="item-count">13</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="lnr lnr-chevron-right"></span>Pre-Sales
+                    <span class="item-count">08</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="lnr lnr-chevron-right"></span>Purchases
+                    <span class="item-count">34</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="lnr lnr-chevron-right"></span>Billing
+                    <span class="item-count">78</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class="lnr lnr-chevron-right"></span>Testimonials
+                    <span class="item-count">26</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- end /.collapsible_content -->
+          </div>
+          <!-- end .card--forum_categories -->
+
+          <div class="sidebar-card card--top_discussion">
+            <div class="card-title">
+              <h4>Top Discussions</h4>
+            </div>
+            <div class="collapsible-content">
+              <ul class="card-content">
+                <li>
+                  <a href="#">
+                    <span></span>Commissions Transfer Problem ( 12h )</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span></span>Dashboard not updating ( 9h )</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span></span> AdminPro ( 2d )</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span></span>Bill required after purchase ( 3d )</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span></span>How to install the theme? ( 7d )</a>
+                </li>
+                <li>
+                  <a href="#">
+                    <span class=""></span>Contact Form not Working ( 9d )</a>
+                </li>
+              </ul>
+            </div>
+            <!-- end /.collapsible_content -->
+          </div>
+          <!-- end .card--forum_categories -->
+        </aside>
+        <!-- end .sidebar -->
+      </div>
+      <!-- end .col-md-4 -->
+    </div>
+    <!-- end .row -->
+  </div>
+  <!-- end .container -->
+</section>
